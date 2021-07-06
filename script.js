@@ -75,3 +75,16 @@ document
   .addEventListener("click", function () {
     message.remove();
   });
+
+//Styles
+message.style.backgroundColor = "#37383d";
+message.style.width = "120%";
+
+console.log(message.style.height);
+console.log(message.style.backgroundColor);
+
+//contains all of the properties of the value
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height = getComputedStyle(message).height + 40 + "px";
