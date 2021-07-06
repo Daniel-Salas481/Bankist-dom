@@ -87,4 +87,41 @@ console.log(message.style.backgroundColor);
 console.log(getComputedStyle(message).color);
 console.log(getComputedStyle(message).height);
 
-message.style.height = getComputedStyle(message).height + 40 + "px";
+//changes the height of the message
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
+
+//Easily change the stlye of the page
+document.documentElement.style.setProperty("--color-primary", "orangered");
+
+//Attributes
+const logo = document.querySelector(".nav__logo");
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+logo.alt = "Beautiful minimalist logo";
+
+//Non-standard
+console.log(logo.designer);
+console.log(logo.getAttribute("designer"));
+logo.setAttribute("company", "Bankist");
+
+//the absolute URL of the image
+console.log(logo.src);
+//the literal URL of the image
+console.log(logo.getAttribute("src"));
+
+//link attributes
+const link = document.querySelector(".twitter-link");
+console.log(link.href);
+console.log(link.getAttribute("href"));
+
+//Classs
+logo.classList.add("c");
+logo.classList.remove("c");
+logo.classList.toggle("c");
+logo.classList.contains("c"); //not includes
+
+// Don't use
+// logo.className = "daniel";
