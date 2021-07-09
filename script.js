@@ -30,6 +30,77 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
+////////////////////////////
+//button scrolling
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+//getBoundingClientRect method returns a DOMRect object
+// const s1coords = section1.getBoundingClientRect();
+// console.log(s1coords);
+
+// console.log(e.target.getBoundingClientRect());
+
+// console.log("current scroll (X/Y)", window.pageXOffset, window.pageYOffset);
+
+//Scrolling
+// window.scrollTo(
+//   s1coords.left + window.pageXOffset,
+//   s1coords.top + window.pageYOffset
+// );
+
+//old-school way
+// window.scrollTo({
+//   left: s1coords.left + window.pageXOffset,
+//   top: s1coords.top + window.pageYOffset,
+//   behavior: "smooth",
+// });
+
+btnScrollTo.addEventListener("click", function (e) {
+  section1.scrollIntoView({
+    behavior: "smooth",
+  });
+});
+
+///////////////////////////
+//Page navigation
+
+// //This is one way to do it
+// //but it is very inefficient
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//   el.addEventListener("click", function (e) {
+//     //preventing the anchors in the HTML from happening
+//     e.preventDefault();
+//     //grabs the href
+//     const id = this.getAttribute("href");
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({
+//       behavior: "smooth",
+//     });
+//   });
+// });
+
+//Event delegation is a better way
+//1. Add event listener to common parent element
+//2. Determine what element originated the event
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  //e.target is a useful tool in our strategy here
+  //we can see where the event happened
+  // console.log(e.target);
+  e.preventDefault();
+
+  //Matching strategy
+  if (e.target.classList.contains("nav__link")) {
+    //grabs the href
+    const id = e.targetthis.getAttribute("href");
+    console.log(id);
+    document.querySelector(id).scrollIntoView({
+      behavior: "smooth",
+    });
+  }
+});
+
 // //Selecting and Deleting Elements
 
 // //Selecting an element from the page
@@ -125,36 +196,6 @@ document.addEventListener("keydown", function (e) {
 
 // // Don't use
 // // logo.className = "daniel";
-
-//Smooth Scrolling
-const btnScrollTo = document.querySelector(".btn--scroll-to");
-const section1 = document.querySelector("#section--1");
-//getBoundingClientRect method returns a DOMRect object
-// const s1coords = section1.getBoundingClientRect();
-// console.log(s1coords);
-
-// console.log(e.target.getBoundingClientRect());
-
-// console.log("current scroll (X/Y)", window.pageXOffset, window.pageYOffset);
-
-//Scrolling
-// window.scrollTo(
-//   s1coords.left + window.pageXOffset,
-//   s1coords.top + window.pageYOffset
-// );
-
-//old-school way
-// window.scrollTo({
-//   left: s1coords.left + window.pageXOffset,
-//   top: s1coords.top + window.pageYOffset,
-//   behavior: "smooth",
-// });
-
-btnScrollTo.addEventListener("click", function (e) {
-  section1.scrollIntoView({
-    behavior: "smooth",
-  });
-});
 
 //event listener
 
