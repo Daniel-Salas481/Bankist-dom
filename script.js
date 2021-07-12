@@ -7,6 +7,14 @@ const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+const nav = document.querySelector('.nav');
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
 
 const openModal = function (e) {
   e.preventDefault();
@@ -33,8 +41,7 @@ document.addEventListener("keydown", function (e) {
 ////////////////////////////
 //button scrolling
 
-const btnScrollTo = document.querySelector(".btn--scroll-to");
-const section1 = document.querySelector("#section--1");
+
 //getBoundingClientRect method returns a DOMRect object
 // const s1coords = section1.getBoundingClientRect();
 // console.log(s1coords);
@@ -63,9 +70,7 @@ btnScrollTo.addEventListener("click", function (e) {
 });
 
 //Tabbed component
-const tabs = document.querySelectorAll(".operations__tab");
-const tabsContainer = document.querySelector(".operations__tab-container");
-const tabsContent = document.querySelectorAll(".operations__content");
+
 
 tabsContainer.addEventListener("click", function (e) {
   //using .closest so that the tab will be clicked
@@ -87,6 +92,34 @@ tabsContainer.addEventListener("click", function (e) {
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add("operations__content--active");
 });
+
+
+//Menu fade animation
+
+//refactored code
+const handleHover = function(e){
+  if(e.target.classList.contains('nav__link')){
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    //changes the opacity of the logo and links
+    //'this' keyword is now opacity
+    siblings.forEach(el => {
+      if(el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+
+}
+
+//passing "argument" into handler
+//opacity changes to 0.5
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+//opacity back to 1
+nav.addEventListener('mouseout', handleHover.bind(1));
+
+
 
 ///////////////////////////
 //Page navigation
